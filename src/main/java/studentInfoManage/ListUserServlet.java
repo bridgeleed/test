@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.UserDao;
 import entity.User;
@@ -28,6 +29,15 @@ public class ListUserServlet extends HttpServlet{
 //		response.setContentType("text/html;charset=utf-8");
 //		
 //		PrintWriter out = response.getWriter();
+		
+		//做Session验证
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("user");
+		if(user==null){
+			//没有登陆，重定向到登陆页面
+			response.sendRedirect("login.jsp");
+			return;
+		}
 		
 		try {
 			

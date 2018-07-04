@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.UserDao;
 import entity.User;
@@ -19,10 +20,14 @@ public class LoginServlet extends HttpServlet{
 		request.setCharacterEncoding("utf-8");
 		String uname = request.getParameter("username");
 		String pwd = request.getParameter("password");
+		System.out.println(uname+pwd);
 		UserDao dao = new UserDao();
 		try {
 			User user = dao.login_judge(uname);
 			if (user != null && user.getPassword().equals(pwd)) {
+				//登陆成功
+				HttpSession session = request.getSession();
+				session.setAttribute("user", user);
 				response.sendRedirect("list");
 			}else {
 				request.setAttribute("login_failed", "用户名或密码错误！");
