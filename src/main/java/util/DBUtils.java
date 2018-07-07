@@ -75,6 +75,7 @@ public class DBUtils {
 			e.printStackTrace();
 		}
 //这个代表我来过
+//这个代表王五旅游过
 		
 	}
 
