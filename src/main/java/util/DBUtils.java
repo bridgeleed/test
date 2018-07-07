@@ -74,7 +74,9 @@ public class DBUtils {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+//这个代表我来过
 		
 	}
+
 
 }
